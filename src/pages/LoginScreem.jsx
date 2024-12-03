@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
 function LoginScreem() {
+  //? Crear UN estado POR CAMPO
+  //   const [email, setEmail] = useState("");
+  // //   console.log(email);
+  //   const [password, setPassword] = useState("");
+  // //   console.log(password);
+
+  //? Crear UN estado para TODOS los campos del form
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+  });
+  console.log(formValues);
+
+  const handleChange = (e) => {
+    // console.log(e.target.value);
+    setFormValues({
+      //! SPREAD OPERATOR "...": crea EL NUEVO OBJETO
+      ...formValues,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <>
       <div className="container">
@@ -21,7 +43,12 @@ function LoginScreem() {
                   type="email"
                   className="form-control"
                   name="email"
-                  //required
+                  //   required
+                  //   onChange={(e) => {
+                  //     setEmail(e.target.value);
+                  //   }}
+                  value={formValues.email}
+                  onChange={handleChange}
                 />
               </div>
               <div className="mb-3 d-grid">
@@ -30,6 +57,11 @@ function LoginScreem() {
                   type="password"
                   className="form-control"
                   name="password"
+                  //   onChange={(e) => {
+                  //     setPassword(e.target.value);
+                  //   }}
+                  value={formValues.password}
+                  onChange={handleChange}
                 />
               </div>
               <div className="mb-3 d-grid">
