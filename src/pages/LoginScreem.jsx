@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function LoginScreem() {
+function LoginScreem({ cambiarLogin }) {
   const navigate = useNavigate();
 
   //? Crear UN estado POR CAMPO
@@ -15,10 +15,11 @@ function LoginScreem() {
     email: "",
     password: "",
   });
-  console.log(formValues);
+  //! console.log(formValues);
 
   const handleChange = (e) => {
-    // console.log(e.target.value);
+    //! console.log(e.target.value);
+
     setFormValues({
       //! SPREAD OPERATOR "...": crea EL NUEVO OBJETO
       ...formValues,
@@ -47,6 +48,7 @@ function LoginScreem() {
       formValues.password === user.password
     ) {
       // alert("Datos correctos");
+      cambiarLogin();
       navigate("/");
     } else {
       alert("Email o password incorrecto!");

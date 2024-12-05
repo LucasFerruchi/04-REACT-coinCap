@@ -1,27 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 // import './App.css'
 //? metodos para manejar las rutas
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //? importar las paginas
-import HomeScreen from "./pages/HomeScreen";
-import ErrorScreen from "./pages/ErrorScreen";
-// import AdminScreen from "./pages/AdminScreen";
+import RoutesApp from "./routes/RoutesApp";
 import LoginScreem from "./pages/LoginScreem";
-import AboutScreen from "./pages/AboutScreen";
-import NavBar from "./components/NavBar";
+import ProtectedRoutes from "./routes/ProtectedRoutes";
 
 function App() {
+  const [login, setLogin] = useState(false);
+
+  const cambiarLogin = () => {
+    setLogin(!login);
+  };
+
   return (
     <>
       <BrowserRouter>
-        <NavBar />
         <Routes>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/About" element={<AboutScreen />} />
-          <Route path="/login" element={<LoginScreem />} />
-
-          {/* <Route path="/Admin" element={<AdminScreen />} /> */}
-          <Route path="*" element={<ErrorScreen />} />
+          <Route
+            path="/*"
+            element={
+              <ProtectedRoutes login={login}>
+                <RoutesApp cambiarLogin={cambiarLogin} />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/login"
+            element={<LoginScreem cambiarLogin={cambiarLogin} />}
+          />
         </Routes>
       </BrowserRouter>
     </>
