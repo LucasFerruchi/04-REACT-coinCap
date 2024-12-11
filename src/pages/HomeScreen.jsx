@@ -7,14 +7,18 @@ function HomeScreen() {
   const [coins, setCoins] = useState(null);
   console.log(coins);
 
+  //estado para controlar la barra de busqueda
+  const [inputSearch, setInputSearch] = useState("");
+  console.log(inputSearch);
+
   //MONTAJE DEL HOME
   useEffect(() => {
     //codigo
-    traerMonedas();
-  }, []);
+    traerMonedas(inputSearch);
+  }, [inputSearch]);
 
-  const traerMonedas = async () => {
-    const { data } = await getCoins();
+  const traerMonedas = async (termino) => {
+    const { data } = await getCoins(termino);
 
     setCoins(data);
   };
@@ -44,7 +48,10 @@ function HomeScreen() {
 
         <div className="row">
           {/* BUSCADOR */}
-          <SearchCoins />
+          <SearchCoins
+            inputSearch={inputSearch}
+            setInputSearch={setInputSearch}
+          />
         </div>
 
         <div className="row mt-5">

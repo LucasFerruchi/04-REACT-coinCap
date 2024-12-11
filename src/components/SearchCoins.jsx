@@ -1,6 +1,6 @@
 import React from "react";
 
-function SearchCoins() {
+function SearchCoins({ inputSearch, setInputSearch }) {
   return (
     <>
       <div className="col col-md-8 offset-md-2">
@@ -11,6 +11,8 @@ function SearchCoins() {
             placeholder="Search..."
             aria-label="Recipient's username"
             aria-describedby="button-addon2"
+            value={inputSearch}
+            onChange={(e) => setInputSearch(e.target.value)}
           />
           <button
             className="btn btn-outline-secondary"

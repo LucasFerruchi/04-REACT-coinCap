@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import numeral from "numeral";
+import { getCoinById } from "../helpers/coinsApp";
+import { useParams } from "react-router-dom";
 
 function CoinScreen() {
+  const params = useParams();
+  console.log(params);
+  //desestructuro params
+  const { id } = useParams();
+
+  const [coin, setCoin] = useState;
+
+  useEffect(() => {
+    traerDatos();
+  }, [id]);
+
+  const traerDatos = async () => {
+    //DESESTRUCTURO
+    const { data } = await getCoinById(id);
+    setCoin(data);
+  };
+
   return (
     <>
       <div className="container">
