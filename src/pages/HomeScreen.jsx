@@ -38,7 +38,7 @@ function HomeScreen() {
             <div className="d-flex justify-content-end">
               <button
                 className="btn btn-outline-success"
-                onClick={() => traerMonedas()}
+                onClick={() => traerMonedas("")}
               >
                 <i className="fa fa-refresh" aria-hidden="true"></i>
               </button>
